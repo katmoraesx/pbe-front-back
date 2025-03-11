@@ -6,4 +6,15 @@ class Cadastro(models.Model):
     email = models.EmailField()
     cel = models.CharField(max_length=255)
     ocup = models.FloatField()
-    
+
+
+class Disciplinas(models.Model):
+    disciplinas = models.CharField(max_length=10, unique=True)
+    sigla = models.CharField(max_length=255)
+    curso = models.TextField(blank=True, null=True)
+    carga_horaria = models.PositiveIntegerField()
+    semestre = models.PositiveIntegerField()
+    professor_responsavel = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.nome
