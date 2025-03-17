@@ -6,7 +6,7 @@ import ModalProfessores from "../../components/modal";
 import Head from '../../components/head/index.jsx'
 import Footer from '../../components/footer/index'
 
-export default function Home() {
+export default function Teachers() {
     const [dados, setDados] = useState([])
     const [modalOpen, setModalOpen] = useState(false);
     const token = localStorage.getItem('token')
@@ -119,8 +119,67 @@ export default function Home() {
     }
 
     return (
-        <div className="container-home">
-            <h1>Home</h1>
-        </div>
+        <main className="main">
+            <Head />
+            <div className="container_teachers">
+                <section className="section_teachers">
+                    <div className="table">
+                        {dados.map((professor) => (
+                            <div key={professor.id} className="lista">
+                                <div className="col1">
+                                    <FaEdit className="edit" onClick={() => { setModalOpen(true), setProfessorSelecionado(professor) }} />
+                                </div>
+                                <div className="col2">
+                                    <FaTrash className="delete" onClick={() => apagar(professor)} />
+                                </div>
+                                <div className="col3">
+                                    <span className="id">{professor.id}</span>
+                                </div>
+                                <div className="col4">
+                                    <span className="ni">{professor.ni}</span>
+                                </div>
+                                <div className="col5">
+                                    <span className="nome">{professor.nome}</span>
+                                </div>
+                                <div className="col6">
+                                    <span className="email">{professor.email}</span>
+                                </div>
+                                <div className="col7">
+                                    <span className="cel">{professor.cel}</span>
+                                </div>
+                                <div className="col8">
+                                    <span className="ocup">{professor.ocup}</span>
+                                </div>
+                            </div>
+                        ))}
+
+                    </div>
+                    <div className="footer">
+                        <div className="btn1">
+                            <FaPlus className="adicionar" onClick={() => { setModalOpen(true), setProfessorSelecionado(null) }} />
+                        </div>
+                        <div className="pesquisar">
+                            <input
+                                placeholder="Nome do professor"
+                                value={texto}
+                                onChange={(e) => { setTexto(e.target.value) }}
+                            />
+                        </div>
+                        <div className="btn2">
+                            <FaSearch className="procurar" onClick={() => {setModalOpen(true) , search(texto)}} />
+                        </div>
+                    </div>
+                    <ModalProfessores
+                        isOpen={modalOpen}
+                        onClose={() => setModalOpen(false)}
+                        professorSelecionado={professorSelecionado}
+                        up={up}
+                        setUp={setUp}
+                    />
+
+                </section>
+            </div>
+            <Footer />
+        </main>
     );
 }

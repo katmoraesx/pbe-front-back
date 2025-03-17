@@ -1,6 +1,6 @@
 
 from django import forms
-from .models import Disciplina
+from .models import Disciplinas
 
 
 class DisciplinaForm(forms.ModelForm):

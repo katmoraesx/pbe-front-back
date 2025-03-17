@@ -20,7 +20,7 @@ export default function Login(){
       )
       console.log("TokenLogin: ", response.data.access)
       localStorage.setItem('token', response.data.access)
-      navigate('/home')
+      navigate('/teachers')
     } catch (error) {
       console.error(error)
     }
